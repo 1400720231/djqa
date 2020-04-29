@@ -1,0 +1,74 @@
+
+.codehilite .hll {
+    background-color: #ffffcc
+}
+
+.codehilite .c1 {
+    color: #980c0c;
+}
+
+blockquote {
+    border-color: #80818321;
+
+
+}
+
+pre {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+font-size: 18px;
+}
+
+hr {
+    background-color: #cccccc;
+    height: 1px;
+    border: none;
+}
+
+
+img {
+    width: 80%;
+}
+
+.active a {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: #337ab7;
+}
+.nav-tabs>li.active>a{
+    border: unset!important;
+}
+/*li .active{*/
+/*     color: white!important;*/
+/*    background-color: #337ab7!important;*/
+/*}*/
+/* a:focus{*/
+/*color: #337ab7 !important;*/
+/*    background-color: white;*/
+/*}*/
+.focus {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.content {
+    border: 25px solid white;
+    background-color: white;
+    box-shadow:1px -1px 12px 0px rgba(123, 106, 106, 0.37)
+}
+
+
+.js-affix {
+    top: 10px;
+}
+
+.js-affix.affix-bottom {
+    position: absolute;
+}

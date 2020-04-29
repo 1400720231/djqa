@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
+    <div class="row text-center vertical-middle-sm">
+      
+ <h1>项目编辑</h1>
+        <form class="form-horizontal" action="{% url 'project:editproject' ins_id %} " method="post">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}" class="col-md-5 control-label" style="color:red">项目名</label>
+                <div class="col-md-6 text-left">{{ form.title }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.context.id_for_label }}" class="col-md-5 control-label" style="color:red">项目描述</label>
+                <div class="col-md-6 text-left">{{ form.context }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.assin_status.id_for_label }}" class="col-md-5 control-label" style="color:blue">项目分配状态</label>
+                <div class="col-md-6 text-left">{{ form.assin_status }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.status.id_for_label }}" class="col-md-5 control-label" style="color:blue">项目完成状态</label>
+                <div class="col-md-6 text-left">{{ form.status }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.assin.id_for_label }}" class="col-md-5 control-label" style="color:blue"></span>人员指派</label>
+                <div class="col-md-6 text-left">{{ form.assin }}</div>
+            </div>
+         
+            <input type="hidden" name="ins_id" value="{% if ins_id %} {{ ins_id }} {% else %} 0{% endif %}">
+
+            
+            <input type="submit" value="创建项目">
+        </form>
+        
+    </div>
+{% endblock %}

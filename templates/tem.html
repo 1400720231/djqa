@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />    
+    <title>分屏</title>
+    <link href="./分屏.css" rel="stylesheet" type="text/css">
+    <!--引入Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--引入jQuery-->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!--引入Bootstrap的JS插件-->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar">
+    <!--导航栏-->
+    <!--如果将 .navbar-default 设置在<nav>上，她的宽度将是浏览器的宽度；
+        若设置在<ul>上，则它的宽度只有导航条的宽度(即"关于我们"到"联系我们"这么宽)-->
+
+
+    <div class="container" id="contianer1">
+
+
+
+
+
+        <!--套餐-->        
+        <div class="row" id="pricing">
+            <div class="row text-center">
+                <h3>套餐</h3>
+                <p>选择一份适合自己的方案</p>
+            </div>
+            <div class="row">           
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">入门</div>
+                        </div>
+                        <!--没有分割线效果
+                        <div class="panel-body text-center">
+                            <table class="table">
+                                <tr>
+                                    <p>HTML</p>
+                                    <p>CSS</p>
+                                    <p>JavaScript</p>
+                                </tr>
+                                <tr>
+                                    <p>¥99</p>
+                                    <button class="btn btn-primary">购买</button>
+                                </tr>
+                            </table>               
+                        </div>-->
+                        <div class="panel-body text-center">
+                            <p>HTML</p>
+                            <p>CSS</p>
+                            <p>JavaScript</p>
+                        </div>
+                        <div class="panel-footer text-center">
+                            <p>¥99</p>
+                            <button class="btn btn-primary">购买</button>                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">高级</div>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p>HTML5</p>
+                            <p>PHP</p>
+                            <p>MySQL</p>
+                        </div>
+                        <div class="panel-footer text-center">
+                            <p>¥399</p>
+                            <button class="btn btn-primary">购买</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
+
+
+
+     <!--轮播图-->
+        <div class="row">
+            <h3 class="text-center">轮播展示</h3>
+            <div id="Carousel" class="carousel slide" data-ride="carousel">
+                <!--轮播指标-->
+                <ol class="carousel-indicators">
+                    <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#Carousel" data-slide-to="1"></li>
+                    <li data-target="#Carousel" data-slide-to="2"></li>
+                </ol>
+                <!--轮播项目-->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="https://static1.bcjiaoyu.com/f49febe723ba79c384a71a62e3571f2d_o.png-1200x800">
+                        <p class="carousel-caption">巴黎</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://static1.bcjiaoyu.com/519a8173d4933b4344c667cd389fd6ae_j.png-1200x800">
+                        <p class="carousel-caption">纽约</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://static1.bcjiaoyu.com/770b3bd613dacfbeb225474068497adc_d.png-1200x800">
+                        <p class="carousel-caption">旧金山</p>
+                    </div>
+                </div>
+                <!--轮播导航-->
+                <a data-target="#Carousel" class="left carousel-control" type="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#Carousel" type="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+

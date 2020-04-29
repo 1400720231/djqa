@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+
+{% block content %}
+
+
+
+    <div class="container" id="contianer1">
+
+
+        <!--套餐-->
+        <div class="row" id="pricing">
+            <div class="row text-center">
+                <h3>角色</h3>
+                <p>选择一个自己的角色</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">角色一</div>
+                        </div>
+
+                        <div class="panel-body text-center">
+
+                        </div>
+                        <div class="panel-footer text-center">
+                            <p>我是买家</p>
+
+                            <a href="{% url "product:allproducts" %}"> <button class="btn btn-primary">点击进入</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">角色二</div>
+                        </div>
+                        <div class="panel-body text-center">
+
+                        </div>
+                        <div class="panel-footer text-center">
+                            <p> 我是卖家 </p>
+                           <a href="{% url "product:myproducts" %}"> <button class="btn btn-primary">点击进入</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

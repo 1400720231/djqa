@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+
+
+
+{% block content %}
+
+
+
+    <div class="container" id="contianer1">
+
+
+
+        <div class="row" id="portfolio">
+            <div class="row col-md-12 text-center">
+                <h3>所有商品</h3>
+
+            </div>
+
+            <div class="row text-center">
+                {% for product in products.object_list %}
+                    <div class="col-md-4 thumbnail">
+{#                        <img src="https://static1.bcjiaoyu.com/f49febe723ba79c384a71a62e3571f2d_o.png-1200x800">#}
+                         <img src="media/{{ product.image }}/">
+                        <p><strong>{{ product.title }} ￥{{ product.price }}</strong></p>
+
+                        <p>{{ product.desc }}</p>
+                       <a href="{% url 'product:productpay' product.id %}"> <p class="btn btn-primary">立即购买</p></a>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="footer" class="container">
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="navbar-inner navbar-content-center">
+                <div class="text-center">
+                    <div class="pagination">
+                        {% if products.has_previous %}
+                            <a class="btn btn-default btn-sm"
+                               href="?{{ products.previous_page_number.querystring }}"
+                               class="prev">&lsaquo;&lsaquo; {% trans "上一页" %}</a>
+                        {% else %}
+                            <span class="disabled prev btn btn-default btn-sm">&lsaquo;&lsaquo; {% trans "上一页" %}</span>
+                        {% endif %}
+                        {% for page in products.pages %}
+
+                            {% if page %}
+                                {% ifequal page products.number %}
+                                    <span class="current page btn btn-info btn-sm">{{ page }}</span>
+                                {% else %}
+                                    <a class="btn btn-default btn-sm" href="?{{ page.querystring }}"
+                                       class="page">{{ page }}</a>
+                                {% endifequal %}
+                            {% else %}
+                                <span class="current page btn btn-default btn-sm"> ...</span>
+
+                            {% endif %}
+                        {% endfor %}
+                        {% if products.has_next %}
+                            <a class="btn btn-default btn-sm" href="?{{ products.next_page_number.querystring }}"
+                               class="next">{% trans "下一页" %}
+                                &rsaquo;&rsaquo;</a>
+                        {% else %}
+                            <span class="disabled next btn btn-default btn-sm">{% trans "下一页" %} &rsaquo;&rsaquo;</span>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+{% endblock %}

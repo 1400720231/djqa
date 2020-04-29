@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.baidu.com"></a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav" role="navigation">
+                <li><a href="{% url 'project:myindex' %}">我的</a></li>
+
+                <li><a href="{% url 'project:myprojects' %}">项目</a></li>
+                 <li><a href="{% url 'project:mybugs' %}">BUG</a></li>
+
+                <li><a href="{% url 'project:statistics' %}">统计</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="margin-right:10px">
+                {% if user.is_authenticated %}
+                    <li>
+                        <div style="margin-top:8px">
+                            <button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu'
+                                    data-toggle='dropdown'>hello,{{ user.username }}<span class=''></span></button>
+
+                        </div>
+                    </li>
+
+                    <li><a href="{% url 'user:logout' %}">退出登录</a></li>
+                {% else %}
+                    <li><a href="{% url 'user:login' %}">登录</a></li>
+                    <li><a href="{% url 'user:register' %}">注册</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+

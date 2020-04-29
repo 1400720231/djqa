@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container">
+        <div class="row col-md-3 text-left">
+                
+            <h3><a href="{% url 'project:mybugs' %}?action=0"><button class="btn btn-default">所有BUG</button></a></h3>
+        </div>
+        <div class="row col-md-3 text-left">
+            <h3><a href="{% url 'project:mybugs' %}?action=1"><button class="btn btn-default">指给我的BUG</button></a></h3>
+
+        </div>
+        <div class="row col-md-3 text-left">
+                
+            <h3><a href="{% url 'project:mybugs' %}?action=2"><button class="btn btn-default">我创建的BUG</button></a></h3>
+        </div>
+             
+        <div class="row col-md-3 text-right">
+            <h3><a href="{% url 'project:addbug' %}"><button class="btn btn-primary">发起BUG</button></a></h3>
+
+        </div>
+        <div class="row">
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>类型</th>
+                    <th>BUG名称</th>
+                    <th>发起者</th>
+                    <th>创建时间</th>
+                    <th>所属项目</th>
+                    <th>处理日志</th>
+                    <th>完成度</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for bug in bugs.object_list %}
+                    <tr>
+                         
+                        <td>{{ bug.id }}</td>
+
+                        <td>{{ bug.get_type_display }}</td>
+                        <td>{{ bug.title }}</td>
+                        <td>{{ bug.action.username }}</td>
+                        <td>{{ bug.created_time }}</td>
+                        <td>{{ bug.project.title }}</td>
+                        <td>查看日志</td>
+                        <td>{{ bug.get_status_display }}</td>
+              
+                        <td><a href="{% url 'project:editbug' bug.id %}">编辑</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+        <div id="footer" class="container">
+            <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="navbar-inner navbar-content-center">
+                    <div class="text-center">
+                        <div class="pagination">
+                            {% if bugs.has_previous %}
+                                <a class="btn btn-default btn-sm"
+                                   href="?{{ bugs.previous_page_number.querystring }}"
+                                   class="prev">&lsaquo;&lsaquo; {% trans "上一页" %}</a>
+                            {% else %}
+                                <span class="disabled prev btn btn-default btn-sm">&lsaquo;&lsaquo; {% trans "上一页" %}</span>
+                            {% endif %}
+                            {% for page in bugs.pages %}
+
+                                {% if page %}
+                                    {% ifequal page bugs.number %}
+                                        <span class="current page btn btn-info btn-sm">{{ page }}</span>
+                                    {% else %}
+                                        <a class="btn btn-default btn-sm" href="?{{ page.querystring }}"
+                                           class="page">{{ page }}</a>
+                                    {% endifequal %}
+                                {% else %}
+                                    <span class="current page btn btn-default btn-sm"> ...</span>
+
+                                {% endif %}
+                            {% endfor %}
+                            {% if bugs.has_next %}
+                                <a class="btn btn-default btn-sm" href="?{{ bugs.next_page_number.querystring }}"
+                                   class="next">{% trans "下一页" %}
+                                    &rsaquo;&rsaquo;</a>
+                            {% else %}
+                                <span class="disabled next btn btn-default btn-sm">{% trans "下一页" %} &rsaquo;&rsaquo;</span>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

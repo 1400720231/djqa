@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}添加商品{% endblock %}
+{% block content %}
+    <div class="row text-center vertical-middle-sm">
+        <h1>添加商品</h1>
+
+        <form class="form-horizontal"  enctype="multipart/form-data" action="{% url 'product:product_add' %}" method="post">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}" class="col-md-5 control-label" style="color:red"><span
+                        class="glyphicon glyphicon-user"></span>商品名称</label>
+                <div class="col-md-6 text-left">{{ form.title }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.desc.id_for_label }}" class="col-md-5 control-label" style="color:blue"><span
+                        class="glyphicon glyphicon-floppy-open"></span>商品描述</label>
+                <div class="col-md-6 text-left">{{ form.desc }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.price.id_for_label }}" class="col-md-5 control-label" style="color:blue"><span
+                        class="glyphicon glyphicon-floppy-open"></span>商品价格</label>
+                <div class="col-md-6 text-left">{{ form.price }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}" class="col-md-5 control-label" style="color:blue"><span
+                        class="glyphicon glyphicon-floppy-open"></span>商品图片</label>
+                <div class="col-md-6 text-left">{{ form.image }}</div>
+            </div>
+            <input type="submit" value="确定">
+        </form>
+
+    </div>
+{% endblock %}

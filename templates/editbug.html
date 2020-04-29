@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
+    <div class="row text-center vertical-middle-sm">
+        <h1>BUG编辑</h1>
+
+        <form class="form-horizontal" action="{% url 'project:editbug' bug_id %}" method="post">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <div class="form-group">
+                <label for="{{ form.type.id_for_label }}" class="col-md-5 control-label" style="color:red">bug类型</label>
+                <div class="col-md-6 text-left">{{ form.type }}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}" class="col-md-5 control-label" style="color:red">bug名</label>
+                <div class="col-md-6 text-left">{{ form.title }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.desc.id_for_label }}" class="col-md-5 control-label" style="color:red">bug描述</label>
+                <div class="col-md-6 text-left">{{ form.desc }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.assin.id_for_label }}" class="col-md-5 control-label" style="color:blue">指派人员</label>
+                <div class="col-md-6 text-left">{{ form.assin }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.status.id_for_label }}" class="col-md-5 control-label" style="color:blue">完成度</label>
+                <div class="col-md-6 text-left">{{ form.status }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.project.id_for_label }}" class="col-md-5 control-label" style="color:blue"></span>所属项目</label>
+                <div class="col-md-6 text-left">{{ form.project }}</div>
+            </div>
+             <div class="form-group">
+                <label for="{{ form.range.id_for_label }}" class="col-md-5 control-label" style="color:blue"></span>影响范围</label>
+                <div class="col-md-6 text-left">{{ form.range }}</div>
+            </div>
+             <div class="form-group">
+                <label for="{{ form.hard.id_for_label }}" class="col-md-5 control-label" style="color:blue"></span>修复难度</label>
+                <div class="col-md-6 text-left">{{ form.hard }}</div>
+            </div>
+			<input type="hidden" name="bug_id" value="{% if bug_id %} {{ bug_id }} {% else %} 0{% endif %}">
+            
+            <input type="submit" value="编辑完成">
+        </form>
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+.title {
+    font-size: 50px;
+    font-style: initial;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+.documents {
+    background-color: #f8f8f8;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    font-size: 55px;
+}
+
+.active {
+    color: #00A000;
+}
+
+.focus {
+    font-size: 25px;
+    font-weight: bold;
+}
+.quote {
+    font-size: 98px;
+    font-weight: bold;
+}

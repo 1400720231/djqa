@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container">
+        <div class="row col-md-3 text-left">
+                
+            <h3><a href="{% url 'project:myprojects' %}?action=0"><button class="btn btn-default">所有项目</button></a></h3>
+        </div>
+        <div class="row col-md-3 text-left">
+            <h3><a href="{% url 'project:myprojects' %}?action=1"><button class="btn btn-default">指给我的</button></a></h3>
+
+        </div>
+        <div class="row col-md-3 text-left">
+                
+            <h3><a href="{% url 'project:myprojects' %}?action=2"><button class="btn btn-default">我创建的</button></a></h3>
+        </div>
+             
+        <div class="row col-md-3 text-right">
+            <h3><a href="{% url 'project:addproject' %}"><button class="btn btn-primary">创建项目</button></a></h3>
+
+        </div>
+        <div class="row">
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>项目名称</th>
+                    <th>负责人</th>
+                    <th>创建时间</th>
+                    <th>指派状态</th>
+                    <th>完成度</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for project in projects.object_list %}
+                    <tr>
+                         
+                        <td>{{ project.id }}</td>
+                        <td>{{ project.title }}</td>
+                        <td>{{ project.user.username }}</td>
+                        <td>{{ project.created_time }}</td>
+                        <td>{% if project.assin_status %} 已分配{% else %}未分配{% endif %}</td>
+                        <td>{{ project.get_status_display }}</td>
+                        <td><a href="{% url 'project:editproject' project.id %}">编辑</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+        <div id="footer" class="container">
+            <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="navbar-inner navbar-content-center">
+                    <div class="text-center">
+                        <div class="pagination">
+                            {% if projects.has_previous %}
+                                <a class="btn btn-default btn-sm"
+                                   href="?{{ projects.previous_page_number.querystring }}"
+                                   class="prev">&lsaquo;&lsaquo; {% trans "上一页" %}</a>
+                            {% else %}
+                                <span class="disabled prev btn btn-default btn-sm">&lsaquo;&lsaquo; {% trans "上一页" %}</span>
+                            {% endif %}
+                            {% for page in projects.pages %}
+
+                                {% if page %}
+                                    {% ifequal page projects.number %}
+                                        <span class="current page btn btn-info btn-sm">{{ page }}</span>
+                                    {% else %}
+                                        <a class="btn btn-default btn-sm" href="?{{ page.querystring }}"
+                                           class="page">{{ page }}</a>
+                                    {% endifequal %}
+                                {% else %}
+                                    <span class="current page btn btn-default btn-sm"> ...</span>
+
+                                {% endif %}
+                            {% endfor %}
+                            {% if products.has_next %}
+                                <a class="btn btn-default btn-sm" href="?{{ projects.next_page_number.querystring }}"
+                                   class="next">{% trans "下一页" %}
+                                    &rsaquo;&rsaquo;</a>
+                            {% else %}
+                                <span class="disabled next btn btn-default btn-sm">{% trans "下一页" %} &rsaquo;&rsaquo;</span>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

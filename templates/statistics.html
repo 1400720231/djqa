@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <div style="height:300px;width:50%;">
+                            <canvas id="chartjs-pie-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 text-left">
+                        <div style="height:300px;width:50%;">
+                                <canvas id="chartjs-pie-chart2"></canvas>
+                        </div>
+                    </div>
+                </div>
+              
+               
+     
+    
+            </div>
+            <div class="col-md-6 text-left">
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <div style="height:300px;width:50%;">
+                            <canvas id="chartjs-pie-chart3"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 text-left">
+                        <div style="height:300px;width:50%;">
+                                <canvas id="chartjs-pie-chart4"></canvas>
+                        </div>
+                    </div>
+                </div>
+              
+               
+     
+    
+            </div>
+
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <h4>bug数量变化走势图</h4>
+                <hr>
+                  <canvas id="canvas" height="300" width="950"></canvas>
+
+            </div>
+            <div class="col-md-6 text-left">
+                <h4>项目数量变化走势图</h4>
+                <hr>
+                 <canvas id="canvas2" height="300" width="950"></canvas>
+            </div>
+        </div>
+        
+       
+   </div>     
+   
+<script src="{% static 'js/Chart.min.js' %}"></script>
+
+<script>
+ 
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)', 
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+
+    window.randomScalingFactor = function () {
+        return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+    };
+
+     
+  
+
+    var pieConfig1 = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    {{b1}},{{b2}},{{b3}},{{b4}}
+                ],
+                backgroundColor: [
+                    window.chartColors.gray,
+                    window.chartColors.orange,
+                    window.chartColors.green,
+                    window.chartColors.red,
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                "未开始",
+                "进行中",
+                "已完成",
+                "已逾期",
+             
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'BUG处理分布情况'
+            }
+        }
+    };
+    
+        var pieConfig2 = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    {{e}},{{f}}
+                ],
+                backgroundColor: [
+                    window.chartColors.gray,
+                    window.chartColors.orange,
+                    window.chartColors.green,
+                    window.chartColors.red,
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                "前端",
+                "后端",
+             
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: '前后端BUG分布情况'
+            }
+        }
+    };
+      
+        var pieConfig3 = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                   {{p1}},{{p2}},{{p3}},{{p4}}
+                ],
+                backgroundColor: [
+                    window.chartColors.gray,
+                    window.chartColors.orange,
+                    window.chartColors.green,
+                    window.chartColors.red,
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                "未开始",
+                "进行中",
+                "已完成",
+                "已逾期",
+             
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: '项目处理情况'
+            }
+        }
+    };
+      
+        var pieConfig4 = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: {{ count|safe }},
+                backgroundColor: [
+                    window.chartColors.gray,
+                    window.chartColors.orange,
+                    window.chartColors.green,
+                    window.chartColors.red,
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: {{ title|safe }}
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: '项目BUG统计图'
+            }
+        }
+    };
+      
+    var pieCtx = document.getElementById("chartjs-pie-chart").getContext("2d");
+    var pieCtx2 = document.getElementById("chartjs-pie-chart2").getContext("2d");
+    var pieCtx3 = document.getElementById("chartjs-pie-chart3").getContext("2d");
+    var pieCtx4 = document.getElementById("chartjs-pie-chart4").getContext("2d");
+    window.myPie = new Chart(pieCtx, pieConfig1);
+    window.myPie = new Chart(pieCtx2, pieConfig2);
+    window.myPie = new Chart(pieCtx3, pieConfig3);
+    window.myPie = new Chart(pieCtx4, pieConfig4);
+     
+</script>
+
+<script>
+var lineChartData = {
+labels : ["Mongodb","jquery","Laravel","bootstrap","vue.js","Html5","CSS3","php","Linux","MySQL"],
+datasets : [
+    {   text:"xxxx",
+        fillColor : "rgba(220,220,220,0.5)", // //背景填充色
+        strokeColor : "rgba(220,220,220,1)", //路径颜色
+        pointColor : "rgba(220,220,220,1)", // 数据点颜色
+        pointStrokeColor : "#fff",  // 数据边框颜色
+        data : [65,59,90,81,56,55,140,29,15,25]
+    }
+]
+
+}
+var ctx = document.getElementById('canvas').getContext('2d');
+
+new Chart(ctx, {
+
+    type:'line',
+    data: lineChartData,
+     
+});
+</script>
+
+<script>
+var lineChartData = {
+labels : ["Mongodb","jquery","Laravel","bootstrap","vue.js","Html5","CSS3","php","Linux","MySQL"],
+datasets : [
+    {   text:"xxxx",
+        fillColor : "rgba(220,220,220,0.5)", // //背景填充色
+        strokeColor : "rgba(220,220,220,1)", //路径颜色
+        pointColor : "rgba(220,220,220,1)", // 数据点颜色
+        pointStrokeColor : "#fff",  // 数据边框颜色
+        data : [65,59,90,81,56,55,140,29,15,25]
+    }
+]
+
+}
+var ctx = document.getElementById('canvas2').getContext('2d');
+
+new Chart(ctx, {
+
+    type:'line',
+    data: lineChartData,
+     
+});
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
